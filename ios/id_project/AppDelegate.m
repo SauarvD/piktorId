@@ -10,7 +10,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
+#import <RNGoogleSignin/RNGoogleSignin.h>
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -37,6 +37,23 @@
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+  return [RNGoogleSignin application:application
+                             openURL:url
+                   sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                          annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  
+  return [RNGoogleSignin application:application
+                             openURL:url
+                   sourceApplication:sourceApplication
+                          annotation:annotation
+          ];
 }
 
 @end

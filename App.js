@@ -16,7 +16,7 @@ import LoginForm from './src/components/LoginForm';
 const App = () => (
   <View style={{ flex: 1 }}>
     <Header headerText={'Piktorlabs'}/>
-    <AlbumList />
+    <LoginForm />
   </View>
 );
 
