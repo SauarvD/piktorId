@@ -7,4 +7,5 @@ target 'id_project' do
 
   # Pods for id_project
 pod 'GoogleSignIn'
+pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 end

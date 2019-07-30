@@ -7,17 +7,37 @@
  */
 
 import React, {Component} from 'react';
-import { View } from 'react-native';
-import { Header } from './src/common';
+import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 import AlbumList from './src/components/AlbumList';
 import LoginForm from './src/components/LoginForm';
-// import { LoginFlow } from "./src/router";
+import Dashboard from './src/components/Dashboard';
+import testView from './src/components/testView';
 
-const App = () => (
-  <View style={{ flex: 1 }}>
-    <Header headerText={'Piktorlabs'}/>
-    <LoginForm />
-  </View>
-);
+const AuthStackNavigator = createStackNavigator(
+  {
+    Dashboard: { screen: Dashboard},
+    testView: { screen: testView}
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
+  }
+)
 
-export default App;
+const DrawerNavigator = createDrawerNavigator(
+ {
+  Home: { screen: AuthStackNavigator},
+  LogOut: { screen: testView}
+ } 
+)
+
+const AuthSwitchNavigator = createSwitchNavigator(
+  {
+    Login: { screen: LoginForm },
+    Dashboard: { screen: DrawerNavigator }
+  }
+)
+
+export default createAppContainer(AuthSwitchNavigator);
