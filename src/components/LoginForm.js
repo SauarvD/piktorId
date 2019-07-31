@@ -165,7 +165,6 @@ const styles = {
         color: '#000',
         marginTop: 4,
         marginBottom: 4,
-        marginRight: 20,
         fontFamily: 'TitilliumWeb-Regular'
     },
     errorTextStyle: {
