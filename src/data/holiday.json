@@ -1,0 +1,72 @@
+{
+    "public":[
+        {
+            "occasion":"Republic Day",
+            "date":"26-JAN-2019",
+            "day":"SAT"
+        },
+        {
+            "occasion":"May day",
+            "date":"1-MAY-2019",
+            "day":"WED"
+        },
+        {
+            "occasion":"Independence Day",
+            "date":"15-AUG-2019",
+            "day":"THU"
+        },
+        {
+            "occasion":"Onam",
+            "date":"11-SEP-2019",
+            "day":"WED"
+        },
+        {
+            "occasion":"Gandhi Jayanti",
+            "date":"02-OCT-2019",
+            "day":"WED"
+        },
+        {
+            "occasion":"Mahanavami / Ayudha Pooje",
+            "date":"07-OCT-2019",
+             "day":"MON"
+        },
+        {
+            "occasion":"Kannada Rajyotsava",
+            "date":"01-NOV-2019",
+            "day":"FRI"
+        },
+        {
+            "occasion":"Christmas",
+            "date":"25-DEC-2019",
+            "day":"WED"
+        }
+    ],
+    "optional":[
+        {
+            "occasion":"New year day",
+            "date":"01-JAN-2019",
+            "day":"TUE"
+        },
+        {
+            "occasion":"Good Friday",
+            "date":"19-APR-2019",
+            "day":"FRI"
+        },
+        {
+            "occasion":"Bakrid",
+            "date":"12-AUG-2019",
+            "day":"MON"
+        },
+        {
+            "occasion":"Ganesha Chaturthi",
+            "date":"02-SEPT-2019",
+            "day":"MON"
+        },
+        {
+            "occasion":"Vijayadashami",
+            "date":"08-OCT-2019",
+            "day":"TUE"
+        }
+    ]
+ }
+ 

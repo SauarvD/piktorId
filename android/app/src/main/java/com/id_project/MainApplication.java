@@ -3,6 +3,7 @@ package com.id_project;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSharePackage(),
             new LinearGradientPackage(),
             new ReanimatedPackage(),
             new RNGoogleSigninPackage(),

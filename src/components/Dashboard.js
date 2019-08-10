@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Animated, TouchableOpacity } from 'react-native';
+import { View, Text, Image, Animated, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
+import { withNavigation } from "react-navigation";
 import LinearGradient from 'react-native-linear-gradient';
 import Barcode from 'react-native-barcode-builder';
 import { Spinner, ProgressiveImage } from '../common';
@@ -23,8 +24,8 @@ class Dashboard extends Component {
     }
 
     toggle(){
-        let initialValue = this.state.visible ? 200 : 0,
-        finalValue  = this.state.visible ? 0 : 200;
+        let initialValue = this.state.visible ? 250 : 0,
+        finalValue  = this.state.visible ? 0 : 250;
 
         this.state.animation.setValue(initialValue); 
 
@@ -72,6 +73,14 @@ class Dashboard extends Component {
         }
     }
 
+    moveTo(){
+        this.props.navigation.navigate('HolidayList');
+    }
+
+    routeTo(data){
+        this.props.navigation.navigate(data);
+    }
+
     renderData(){
         return (
             <View>
@@ -107,9 +116,40 @@ class Dashboard extends Component {
                         <View style={styles.topDetails}>
                             <Animated.View style={[styles.topView,{height: this.state.animation}]}>
                                 <Image style={styles.insideLogo} source={require("../../assets/png/Piktorlabs_LOGO_Black.png")}/>
-                                <TouchableOpacity style={styles.holidaysContainer}>
-                                    <Text style={styles.holidays}>HOLIDAYS</Text>
-                                </TouchableOpacity> 
+                                <View style={styles.statusBar}>
+                                    <Text style={styles.statusText}>YOUR STATUS</Text>
+                                    <TouchableOpacity style={styles.holidaysContainer} onPress={()=>this.moveTo()}>
+                                        <Text style={styles.holidays}>HOLIDAYS</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <ScrollView 
+                                    horizontal={true} 
+                                    showsHorizontalScrollIndicator={false} 
+                                    contentContainerStyle={{flexDirection:'row',justifyContent:'flex-start'}}
+                                    style={styles.statusContent}
+                                >
+                                    <TouchableOpacity  activeOpacity={0.5} style={styles.ButtonStyle}>
+                                        <Image style={styles.statusImage} source={require("../../assets/png/Oval.png")} />
+                                        <View style={styles.status}>
+                                            <Text style={styles.topText}>In</Text>
+                                            <Text style={styles.bottomText}>Office</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity  activeOpacity={0.5} style={styles.ButtonStyle} onPress={()=>this.routeTo('WFH')}>
+                                        <Image style={styles.statusImage} source={require("../../assets/png/wfh.png")} />
+                                        <View style={styles.status}>
+                                            <Text style={styles.topText}>Work from</Text>
+                                            <Text style={styles.bottomText}>Home</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity  activeOpacity={0.5} style={styles.ButtonStyle} onPress={()=>this.routeTo('Leave')}>
+                                        <Image style={styles.statusImage} source={require("../../assets/png/leave.png")} />
+                                        <View style={styles.status}>
+                                            <Text style={styles.topText}>Apply</Text>
+                                            <Text style={styles.bottomText}>Leave</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </ScrollView>
                             </Animated.View>
                             <TouchableOpacity style={styles.bottomView} onPress={()=>this.toggle()}></TouchableOpacity>
                         </View>
@@ -176,7 +216,8 @@ const styles = {
         textAlign: 'center',
         position: 'absolute',
         bottom: -10,
-        color: "#bdbdbd"
+        color: "#000",
+        opacity: 0.8
     },
     barCodeData: {
         position: 'absolute',
@@ -222,16 +263,62 @@ const styles = {
         opacity: 0.4
     },
     holidaysContainer: {
-        position: 'absolute',
-        alignSelf: 'center',
-        bottom: 30
+        alignSelf: 'center'
     },
     holidays: {
         color: '#4A90E2',
         fontFamily: 'TitilliumWeb-Regular',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '600'
+    },
+    statusText: {
+        fontSize: 14,
+        color: '#666',
+        fontFamily: 'TitilliumWeb-Regular'
+    },
+    statusBar: {
+        marginLeft: 15,
+        position: 'absolute',
+        flexDirection: 'row',
+        width: '93%',
+        justifyContent: 'space-between',
+        bottom: 130
+    },
+    statusContent: {
+        width: '100%',
+        position: 'absolute',
+        bottom: 10,
+        left: 10
+    }, 
+    ButtonStyle: {
+        position: 'relative',
+        backgroundColor: '#F2F2F2',
+        borderRadius: 10,
+        padding: 20,
+        width: 110,
+        height: 110,
+        marginRight: 13
+    },
+    statusImage: {
+        position: 'absolute',
+        left: 15,
+        top: 15,
+        height: 15,
+        width: 15
+    },
+    status: {
+        position: 'absolute',
+        left: 15,
+        bottom: 10
+    },
+    topText: {
+        fontSize: 12,
+        fontFamily: 'TitilliumWeb-Regular'
+    },
+    bottomText: {
+        fontSize: 18,
+        fontFamily: 'TitilliumWeb-Regular'
     }
 }
 
-export default Dashboard
+export default withNavigation(Dashboard);
